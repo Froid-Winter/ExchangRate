@@ -65,7 +65,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
-          git add ExchangeRates.csv
+          git add data/raw/ExchangeRates.csv
 
           if ! git diff-index --quiet HEAD; then
             git commit -m "Update exchange rates"
