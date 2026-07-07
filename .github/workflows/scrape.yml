@@ -69,7 +69,7 @@ jobs:
 
           git add data/raw/ExchangeRates.csv
 
-          if ! git diff-index --quiet HEAD; then
+          if ! git diff-index --cached --quiet HEAD; then
             git commit -m "Update exchange rates"
             git fetch origin main
             git pull --rebase origin main
