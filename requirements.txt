@@ -1,0 +1,6 @@
+pandas
+selenium
+requests
+beautifulsoup4
+pdfminer.six
+python-dateutil
