@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from datetime import datetime, timezone
 
-CSV_FILE = "data\\raw\\ExchangeRates.csv"
+CSV_FILE = os.path.join("data", "raw", "ExchangeRates.csv")
 
 def write_to_csv(data):
     try:
