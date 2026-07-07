@@ -4,3 +4,4 @@ requests
 beautifulsoup4
 pdfminer.six
 python-dateutil
+playwright
