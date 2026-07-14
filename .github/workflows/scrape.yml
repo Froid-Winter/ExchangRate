@@ -2,7 +2,8 @@ name: Run New ETL Pipeline
 
 on:
   schedule:
-    - cron: '0 5 * * *'   # 05:00 UTC daily
+    - cron: '0 5 * * *'   # 05:00 UTC daily (full run)
+    - cron: '0 8 * * *'   # 08:00 UTC daily (retry missing countries)
   workflow_dispatch:
 
 permissions:
@@ -17,7 +18,7 @@ jobs:
       # Checkout repo
       # -------------------
       - name: Checkout repo content
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -25,7 +26,7 @@ jobs:
       # Setup Python
       # -------------------
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
@@ -47,8 +48,23 @@ jobs:
       # -------------------
       # Run ETL script
       # -------------------
+      - name: Determine run mode
+        id: mode
+        run: |
+          HOUR=$(date -u +%H)
+          if [ "$HOUR" = "08" ] || [ "$HOUR" = "8" ]; then
+            echo "retry=true" >> $GITHUB_OUTPUT
+          else
+            echo "retry=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Run many countries
-        run: python main.py
+        run: |
+          if [ "${{ steps.mode.outputs.retry }}" = "true" ]; then
+            python main.py --retry
+          else
+            python main.py
+          fi
 
       # -------------------
       # Debug
