@@ -436,5 +436,5 @@ Vietnam,25283.0,VND,https://sbv.gov.vn/vi/t%E1%BB%B7-gi%C3%A1-tham-kh%E1%BA%A3o-
 Sri Lanka,336.2576,LKR,https://www.cbsl.gov.lk/en/rates-and-indicators/exchange-rates/daily-indicative-usd-spot-exchange-rates,2026-07-26,2026-07-27,Central Bank of Sri Lanka,only one(USD->LKR)
 Egypt,51.30915,EGP,https://www.cbe.org.eg/en/economic-research/statistics/cbe-exchange-rates/historical-data,2026-07-26,2026-07-27,Central bank of Egypt (CBE),buy sell
 Turkey,47.226150000000004,TRY,https://www.tcmb.gov.tr/kurlar/202607/24072026.xml,2026-07-26,2026-07-27,Türkiye Cumhuriyet Merkez Bankası (TCMB),"Banknote(buy, sell)"
-Indonesia,17915.0,IDR,https://www.bi.go.id/en/statistik/informasi-kurs/transaksi-bi/Default.aspx,2026-07-26,2026-07-27,"bank indonesia, bank sentral republik indonesia","buy, sell"
+Indonesia,17909.0,IDR,https://www.bi.go.id/en/statistik/informasi-kurs/transaksi-bi/Default.aspx,2026-07-26,2026-07-27,"bank indonesia, bank sentral republik indonesia","buy, sell"
 Bangladesh,123.775,BDT,https://www.bb.org.bd/en/index.php/econdata/exchangerate,2026-07-26,2026-07-27,Bangladesh Bank,"low, high (avg)"
