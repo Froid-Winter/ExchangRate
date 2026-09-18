@@ -1477,6 +1477,7 @@ Egypt,52.214200000000005,EGP,https://www.cbe.org.eg/en/economic-research/statist
 Turkey,48.64115,TRY,https://www.tcmb.gov.tr/kurlar/202609/16092026.xml,2026-09-16,2026-09-17,Türkiye Cumhuriyet Merkez Bankası (TCMB),"Banknote(buy, sell)"
 Indonesia,17635.0,IDR,https://www.bi.go.id/en/statistik/informasi-kurs/transaksi-bi/Default.aspx,2026-09-16,2026-09-17,"bank indonesia, bank sentral republik indonesia","buy, sell"
 Bangladesh,123.175,BDT,https://www.bb.org.bd/en/index.php/econdata/exchangerate,2026-09-16,2026-09-17,Bangladesh Bank,"low, high (avg)"
+Indonesia,17712.0,IDR,https://www.bi.go.id/en/statistik/informasi-kurs/transaksi-bi/Default.aspx,2026-09-17,2026-09-18,"bank indonesia, bank sentral republik indonesia","buy, sell"
 Brunei,1.2766,dollar,https://www.imf.org/external/np/fin/data/rms_mth.aspx?SelectDate=2026-09-30&reportType=REP,2026-09-17,2026-09-18,IMF,Mid-point
 China,6.7078,yuan,https://www.imf.org/external/np/fin/data/rms_mth.aspx?SelectDate=2026-09-30&reportType=REP,2026-09-17,2026-09-18,IMF,Mid-point
 India,95.8855,rupee,https://www.imf.org/external/np/fin/data/rms_mth.aspx?SelectDate=2026-09-30&reportType=REP,2026-09-17,2026-09-18,IMF,Mid-point
@@ -1495,5 +1496,4 @@ Vietnam,25632.0,VND,https://sbv.gov.vn/vi/t%E1%BB%B7-gi%C3%A1-tham-kh%E1%BA%A3o-
 Sri Lanka,331.892,LKR,https://www.cbsl.gov.lk/en/rates-and-indicators/exchange-rates/daily-indicative-usd-spot-exchange-rates,2026-09-17,2026-09-18,Central Bank of Sri Lanka,only one(USD->LKR)
 Egypt,52.146,EGP,https://www.cbe.org.eg/en/economic-research/statistics/cbe-exchange-rates/historical-data,2026-09-17,2026-09-18,Central bank of Egypt (CBE),buy sell
 Turkey,48.6506,TRY,https://www.tcmb.gov.tr/kurlar/202609/17092026.xml,2026-09-17,2026-09-18,Türkiye Cumhuriyet Merkez Bankası (TCMB),"Banknote(buy, sell)"
-Indonesia,17712.0,IDR,https://www.bi.go.id/en/statistik/informasi-kurs/transaksi-bi/Default.aspx,2026-09-17,2026-09-18,"bank indonesia, bank sentral republik indonesia","buy, sell"
 Bangladesh,122.95,BDT,https://www.bb.org.bd/en/index.php/econdata/exchangerate,2026-09-17,2026-09-18,Bangladesh Bank,"low, high (avg)"
