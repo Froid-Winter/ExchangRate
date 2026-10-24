@@ -12,7 +12,7 @@ Indonesia, Japan, Laos, Malaysia, Myanmar, Pakistan, the Philippines, Saudi
 Arabia, Singapore, Sri Lanka, Thailand, Turkey, and Vietnam. Rates may not be
 available for every country or date, depending on the source.
 
-The Bangladesh scraper is present in the codebase but is currently disabled in the main pipeline due to the website under maintenance. "The Service is under Maintenance"
+The Bangladesh scraper is present in the codebase but is currently disabled in the main pipeline due to the source website displays a maintenance message.
 
 ## Requirements
 
@@ -26,8 +26,7 @@ Install the Python dependencies from the repository root:
 python -m pip install -r requirements.txt
 ```
 
-Make sure Firefox and geckodriver are installed and available to Selenium if
-you want to run all enabled scrapers. The GitHub Actions workflow configures
+To run all enabled scrapers locally, ensure that Firefox and geckodriver are installed and accessible to Selenium. The GitHub Actions workflow configures
 these dependencies for its scheduled runs.
 
 ## Run
@@ -63,7 +62,7 @@ The CSV contains these columns:
 | `date_of_page` | Date the reported rate applies to |
 | `date_of_scrape` | Date the pipeline collected the data |
 | `Source` | Publisher or data source |
-| `Status` | Rate status or type, when provided by the source |
+| `Status` | Rate status or type, base on the method we get data |
 
 ## Automation
 
