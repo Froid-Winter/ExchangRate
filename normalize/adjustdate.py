@@ -42,7 +42,8 @@ def adjust_hongkong(exdate):
 def adjust_date_indonesia(exdate):
     # Parse input (assuming YYYY-MM-DD)
     dt = normalize_date(exdate)
-    # Return in DD-Mon-YYYY format, e.g., 03-Feb-2026
+    # Bank Indonesia's date inputs are validated as jQuery UI "d-MMM-yy",
+    # e.g. 03-Feb-2026. Slash formats are rejected by the site.
     return dt.strftime("%d-%b-%Y")
 
 def _is_number_line(s: str) -> bool:
