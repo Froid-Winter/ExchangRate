@@ -2171,7 +2171,7 @@ Saudi Arabia,3.75,riyal,https://www.imf.org/external/np/fin/data/rms_mth.aspx?Se
 Singapore,1.2772,dollar,https://www.imf.org/external/np/fin/data/rms_mth.aspx?SelectDate=2026-10-31&reportType=REP,2026-10-22,2026-10-23,IMF,Mid-point
 Thailand,33.65,baht,https://www.imf.org/external/np/fin/data/rms_mth.aspx?SelectDate=2026-10-31&reportType=REP,2026-10-22,2026-10-23,IMF,Mid-point
 Hong Kong,784.675,HKD,https://www.hkab.org.hk/en/rates/exchange-rates,2026-10-22,2026-10-23,The Hong Kong Association of Banks,"buy, sell"
-Cambodia,4077,KHR,https://www.tax.gov.kh/en/exchange-rate?for_year=2026&for_month=10,2026-10-22,2026-10-23,National Bank of Cambodia,Official Rate Riel
+Cambodia,4077.0,KHR,https://www.tax.gov.kh/en/exchange-rate?for_year=2026&for_month=10,2026-10-22,2026-10-23,National Bank of Cambodia,Official Rate Riel
 Lao,22505.5,LAK,https://www.bol.gov.la/en/ExchangRate,2026-10-22,2026-10-23,Bank of the lao P.D.R,"buy, sell"
 Myanmar,2100.0,MMK,https://forex.cbm.gov.mm/index.php/fxrate/history,2026-10-22,2026-10-23,Central Bank of Myanmar,only one
 Pakistan,277.0,PKR,https://www.nbp.com.pk/RateSheetFiles/NBP-RateSheet-22-10-2026.pdf,2026-10-22,2026-10-23,National Bank of Pakistan,buy
@@ -2180,3 +2180,9 @@ Sri Lanka,331.9125,LKR,https://www.cbsl.gov.lk/en/rates-and-indicators/exchange-
 Egypt,55.31,EGP,https://www.cbe.org.eg/en/economic-research/statistics/cbe-exchange-rates/historical-data,2026-10-22,2026-10-23,Central bank of Egypt (CBE),buy sell
 Turkey,49.60339999999999,TRY,https://www.tcmb.gov.tr/kurlar/202610/22102026.xml,2026-10-22,2026-10-23,Türkiye Cumhuriyet Merkez Bankası (TCMB),"Banknote(buy, sell)"
 Indonesia,17986.0,IDR,https://www.bi.go.id/en/statistik/informasi-kurs/transaksi-bi/Default.aspx,2026-10-22,2026-10-23,"bank indonesia, bank sentral republik indonesia","buy, sell"
+Cambodia,4055.0,KHR,https://www.tax.gov.kh/en/exchange-rate?for_year=2026&for_month=09,2026-09-30,2026-10-24,National Bank of Cambodia,Official Rate Riel
+Cambodia,4057.0,KHR,https://www.tax.gov.kh/en/exchange-rate?for_year=2026&for_month=09,2026-09-25,2026-10-24,National Bank of Cambodia,Official Rate Riel
+Egypt,53.4614,EGP,https://www.cbe.org.eg/en/economic-research/statistics/cbe-exchange-rates/historical-data,2026-10-17,2026-10-24,Central bank of Egypt (CBE),buy sell
+Indonesia,17536.0,IDR,https://www.bi.go.id/en/statistik/informasi-kurs/transaksi-bi/Default.aspx,2026-09-13,2026-10-24,"bank indonesia, bank sentral republik indonesia","buy, sell"
+Indonesia,17898.0,IDR,https://www.bi.go.id/en/statistik/informasi-kurs/transaksi-bi/Default.aspx,2026-09-26,2026-10-24,"bank indonesia, bank sentral republik indonesia","buy, sell"
+Lao,22549.0,LAK,https://www.bol.gov.la/en/ExchangRate,2026-07-11,2026-10-24,Bank of the lao P.D.R,"buy, sell"
