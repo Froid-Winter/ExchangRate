@@ -28,7 +28,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.11'
 
       # -------------------
       # Install dependencies
@@ -73,6 +73,7 @@ jobs:
           else
             python main.py
           fi
+        continue-on-error: true
 
       # -------------------
       # Debug
@@ -96,7 +97,7 @@ jobs:
           if ! git diff-index --cached --quiet HEAD; then
             git commit -m "Update exchange rates"
             git fetch origin main
-            git pull --rebase origin main
+            git pull --rebase origin main || git rebase --abort || true
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
             
             echo "csv updated and pushed."
