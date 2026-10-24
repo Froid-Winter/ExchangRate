@@ -40,10 +40,13 @@ jobs:
           # Install Playwright browsers (Firefox)
           python -m playwright install firefox
           # Install geckodriver for Selenium (Firefox is pre-installed on runner)
-          wget -q https://github.com/mozilla/geckodriver/releases/download/v0.34.0/geckodriver-v0.34.0-linux64.tar.gz
-          tar -xzf geckodriver-v0.34.0-linux64.tar.gz
+          GECKO_VER="v0.37.1"
+          wget -q "https://github.com/mozilla/geckodriver/releases/download/${GECKO_VER}/geckodriver-${GECKO_VER}-linux64.tar.gz"
+          tar -xzf "geckodriver-${GECKO_VER}-linux64.tar.gz"
           sudo mv geckodriver /usr/local/bin/
-          rm geckodriver-v0.34.0-linux64.tar.gz
+          sudo chmod +x /usr/local/bin/geckodriver
+          rm "geckodriver-${GECKO_VER}-linux64.tar.gz"
+          geckodriver --version
 
       # -------------------
       # Run ETL script
