@@ -1,5 +1,6 @@
 from selenium.webdriver.firefox.options import Options
 from selenium import webdriver
+from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from normalize.adjustdate import normalize_date, last_day_of_month, is_missing
@@ -32,8 +33,16 @@ def scrap_IMF(exdate=None, max_months_back=12):
     }
 
     options = Options()
-    options.add_argument("--headless")  # Uncomment for headless mode
-    driver = webdriver.Firefox(options=options)
+    options.add_argument("--headless")
+    options.add_argument("--width=1920")
+    options.add_argument("--height=1080")
+    try:
+        driver = webdriver.Firefox(options=options)
+    except Exception:
+        # Fallback with service if needed
+        from selenium.webdriver.firefox.service import Service
+        service = Service()
+        driver = webdriver.Firefox(service=service, options=options)
     results = []
 
     try:

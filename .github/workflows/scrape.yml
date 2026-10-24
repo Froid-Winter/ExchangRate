@@ -37,9 +37,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          # Install Playwright browsers (Firefox)
-          python -m playwright install firefox
           # Install geckodriver for Selenium (Firefox is pre-installed on runner)
+          # Remove any pre-existing geckodriver that might conflict
+          sudo rm -f /usr/local/bin/geckodriver
           GECKO_VER="v0.37.1"
           wget -q "https://github.com/mozilla/geckodriver/releases/download/${GECKO_VER}/geckodriver-${GECKO_VER}-linux64.tar.gz"
           tar -xzf "geckodriver-${GECKO_VER}-linux64.tar.gz"
@@ -47,6 +47,7 @@ jobs:
           sudo chmod +x /usr/local/bin/geckodriver
           rm "geckodriver-${GECKO_VER}-linux64.tar.gz"
           geckodriver --version
+          firefox --version || true
 
       # -------------------
       # Run ETL script
