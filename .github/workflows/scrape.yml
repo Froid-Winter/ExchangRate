@@ -1,58 +1,68 @@
+
 name: Run New ETL Pipeline
 
 on:
   schedule:
-    - cron: '0 5 * * *'   # 05:00 UTC daily (full run)
-    - cron: '0 8 * * *'   # 08:00 UTC daily (retry missing countries)
+    - cron: '0 5 * * *'
+    - cron: '0 8 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: exchange-rate-etl
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
-      # -------------------
-      # Checkout repo
-      # -------------------
-      - name: Checkout repo content
+      # 1. Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # -------------------
-      # Setup Python
-      # -------------------
-      - name: Setup Python
+      # 2. Set up Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements.txt
 
-      # -------------------
-      # Install dependencies
-      # -------------------
+      # 3. Install Python dependencies
       - name: Install dependencies
+        timeout-minutes: 15
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          # Install geckodriver for Selenium (Firefox is pre-installed on runner)
-          # Remove any pre-existing geckodriver that might conflict
-          sudo rm -f /usr/local/bin/geckodriver
+
+      # 4. Install geckodriver for Selenium
+      - name: Set up Firefox WebDriver
+        timeout-minutes: 5
+        run: |
+          set -e
+
           GECKO_VER="v0.37.1"
-          wget -q "https://github.com/mozilla/geckodriver/releases/download/${GECKO_VER}/geckodriver-${GECKO_VER}-linux64.tar.gz"
-          tar -xzf "geckodriver-${GECKO_VER}-linux64.tar.gz"
-          sudo mv geckodriver /usr/local/bin/
-          sudo chmod +x /usr/local/bin/geckodriver
-          rm "geckodriver-${GECKO_VER}-linux64.tar.gz"
+          GECKO_FILE="geckodriver-${GECKO_VER}-linux64.tar.gz"
+
+          wget -q \
+            "https://github.com/mozilla/geckodriver/releases/download/${GECKO_VER}/${GECKO_FILE}" \
+            -O "/tmp/${GECKO_FILE}"
+
+          tar -xzf "/tmp/${GECKO_FILE}" -C /tmp
+
+          sudo install -m 755 /tmp/geckodriver \
+            /usr/local/bin/geckodriver
+
           geckodriver --version
           firefox --version || true
 
-      # -------------------
-      # Run ETL script
-      # -------------------
-      
+      # 5. Determine whether to run full ETL or retry
       - name: Determine run mode
         id: mode
         env:
@@ -66,41 +76,67 @@ jobs:
             echo "Mode: Full ETL run"
           fi
 
-      - name: Run many countries
+      # 6. Run ETL
+      - name: Run ETL pipeline
+        timeout-minutes: 40
+        env:
+          PYTHONUNBUFFERED: "1"
         run: |
+          set -e
+
           if [ "${{ steps.mode.outputs.retry }}" = "true" ]; then
-            python main.py --retry
+            echo "Starting retry for missing countries..."
+            python -u main.py --retry
           else
-            python main.py
+            echo "Starting full ETL pipeline..."
+            python -u main.py
           fi
-        continue-on-error: true
 
-      # -------------------
-      # Debug
-      # -------------------
-      - name: Debug changes
+      # 7. Show output and repository status
+      - name: Debug output
+        if: always()
         run: |
-          ls -lh
-          echo "Checking git status..."
-          git status
+          echo "Repository status:"
+          git status --short
 
-      # -------------------
-      # Commit if changed
-      # -------------------
-      - name: Commit updated csv
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-
-          git add data/raw/ExchangeRates.csv
-
-          if ! git diff-index --cached --quiet HEAD; then
-            git commit -m "Update exchange rates"
-            git fetch origin main
-            git pull --rebase origin main || git rebase --abort || true
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
-            
-            echo "csv updated and pushed."
+          echo "Exchange-rate CSV:"
+          if [ -f data/raw/ExchangeRates.csv ]; then
+            ls -lh data/raw/ExchangeRates.csv
+            wc -l data/raw/ExchangeRates.csv
           else
-            echo "No changes to commit"
+            echo "CSV file not found."
           fi
+
+      # 8. Commit and push updated CSV
+      - name: Commit and push updated CSV
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+
+          FILE="data/raw/ExchangeRates.csv"
+
+          if [ ! -f "$FILE" ]; then
+            echo "CSV file not found. Nothing to commit."
+            exit 1
+          fi
+
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+
+          git add -- "$FILE"
+
+          if git diff --cached --quiet; then
+            echo "No CSV changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update exchange rates"
+
+          git fetch origin main
+          git rebase origin/main
+
+          git push origin HEAD:main
+
+          echo "CSV updated and pushed successfully."
