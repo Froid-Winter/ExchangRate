@@ -78,7 +78,7 @@ jobs:
 
       # 6. Run ETL
       - name: Run ETL pipeline
-        timeout-minutes: 40
+        timeout-minutes: 55
         env:
           PYTHONUNBUFFERED: "1"
         run: |
