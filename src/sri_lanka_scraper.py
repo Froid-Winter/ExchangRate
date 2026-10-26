@@ -70,13 +70,17 @@ def scrape_sri_lanka(exdate=None):
             if len(rows) < 2:
                 return False
 
-            tds = rows[1].find_all("td")
-            if len(tds) < 2:
-                return False
-
-            rate_str = tds[1].get_text(strip=True).replace(",", "")
-            float(rate_str)  # just to confirm it's numeric
-            return True
+            # Check if there is a data row (td) not just header (th)
+            for row in rows[1:]:
+                tds = row.find_all("td")
+                if len(tds) >= 2:
+                    try:
+                        rate_str = tds[1].get_text(strip=True).replace(",", "")
+                        float(rate_str)  # just to confirm it's numeric
+                        return True
+                    except Exception:
+                        continue
+            return False
         except Exception:
             return False
 
@@ -109,7 +113,17 @@ def scrape_sri_lanka(exdate=None):
     if len(rows) < 2:
         raise RuntimeError("Table has no data rows.")
 
-    tds = rows[1].find_all("td")
+    # Find first data row
+    data_row = None
+    for row in rows[1:]:
+        tds = row.find_all("td")
+        if len(tds) >= 2:
+            data_row = row
+            break
+    if data_row is None:
+        raise RuntimeError("Table has no data rows.")
+
+    tds = data_row.find_all("td")
     if len(tds) < 2:
         raise RuntimeError(f"Too few columns: {[t.get_text(strip=True) for t in tds]}")
 
@@ -124,14 +138,13 @@ def scrape_sri_lanka(exdate=None):
 
     print(f"Sri Lanka: {rate} LKR/USD on {page_date}")
 
-    # Use the actual page/date found for consistency with retry logic
-    date_of_page_out = page_date.strftime("%Y-%m-%d") if page_date else date_str
+    requested_date = start_date.strftime("%Y-%m-%d") if 'start_date' in locals() else (exdate.strftime("%Y-%m-%d") if exdate is not None else date_str)
 
     return [{
         "country": "Sri Lanka",
         "value": rate,
         "unit": "LKR",
-        "date_of_page": date_of_page_out,
+        "date_of_page": requested_date,
         "website": "https://www.cbsl.gov.lk/en/rates-and-indicators/exchange-rates/daily-indicative-usd-spot-exchange-rates",
         "Source": "Central Bank of Sri Lanka",
         "Status": "only one(USD->LKR)",
