@@ -41,7 +41,7 @@ SCRAPER_CONFIGS = [
     ("egypt", ["Egypt"], lambda: egypt_scrape(TARGET_DATE)),
     ("turkey", ["Turkey"], lambda: turkey_scrape(TARGET_DATE)),
     ("indonesia", ["Indonesia"], lambda: indonesia_scrape(TARGET_DATE)),
-    # ("bangladesh", ["Bangladesh"], lambda: asyncio.run(scrape_bangladesh(TARGET_DATE))),
+    ("bangladesh", ["Bangladesh"], lambda: asyncio.run(scrape_bangladesh(TARGET_DATE))),
 ]
 
 

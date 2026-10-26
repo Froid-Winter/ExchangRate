@@ -7,16 +7,15 @@ the previous day's rates, normalizes the results, and stores them in
 
 ## Countries
 
-The enabled scrapers cover Brunei, Cambodia, China, Egypt, Hong Kong, India,
+The enabled scrapers cover Bangladesh, Brunei, Cambodia, China, Egypt, Hong Kong, India,
 Indonesia, Japan, Laos, Malaysia, Myanmar, Pakistan, the Philippines, Saudi
 Arabia, Singapore, Sri Lanka, Thailand, Turkey, and Vietnam. Rates may not be
 available for every country or date, depending on the source.
 
-The Bangladesh scraper is present in the codebase but is currently disabled in the main pipeline due to the source website displays a maintenance message.
 
 ## Requirements
 
-- Python 3.9 (the version used by the GitHub Actions workflow)
+- Python 3.11 (the version used by the GitHub Actions workflow)
 - Firefox and geckodriver for the Firefox-based scrapers (IMF, Egypt, and
   Indonesia)
 
