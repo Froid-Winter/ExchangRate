@@ -57,7 +57,7 @@ SCRAPER_CONFIGS = [
     ("myanmar", ["Myanmar"], lambda: scrape_myanmar(TARGET_DATE)),
     ("pakistan", ["Pakistan"], lambda: scrape_pakistan(TARGET_DATE)),
     ("vietnam", ["Vietnam"], lambda: scrape_vietnam(TARGET_DATE)),
-    ("sri_lanka", ["Sri Lanka"], lambda: scrape_sri_lanka(TARGET_DATE)),
+    # ("sri_lanka", ["Sri Lanka"], lambda: scrape_sri_lanka(TARGET_DATE)),
     ("egypt", ["Egypt"], lambda: egypt_scrape(TARGET_DATE)),
     ("turkey", ["Turkey"], lambda: turkey_scrape(TARGET_DATE)),
     ("indonesia", ["Indonesia"], lambda: indonesia_scrape(TARGET_DATE)),
